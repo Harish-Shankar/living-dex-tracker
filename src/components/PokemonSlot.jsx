@@ -8,7 +8,7 @@ import { getPokemonName, getPokemonSprite } from '../data/pokemon';
 const EXP_SHARE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/exp-share.png';
 const EGG_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/egg.png';
 
-export default function PokemonSlot({ dexNumber, status, onStatusChange }) {
+export default function PokemonSlot({ dexNumber, status, onStatusChange, isSearching = false, isMatch = false }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [menuIncludeNotCaught, setMenuIncludeNotCaught] = useState(false);
@@ -19,6 +19,9 @@ export default function PokemonSlot({ dexNumber, status, onStatusChange }) {
   const isCaught = status === CATCH_STATUS.CAUGHT;
   const pokemonName = getPokemonName(dexNumber);
   const spriteUrl = getPokemonSprite(dexNumber, true); // Shiny variant
+
+  // Determine if this slot should be dimmed (searching but not a match)
+  const isDimmed = isSearching && !isMatch;
 
   const openMenu = ({ includeNotCaught }) => {
     setMenuIncludeNotCaught(Boolean(includeNotCaught));
@@ -100,6 +103,8 @@ export default function PokemonSlot({ dexNumber, status, onStatusChange }) {
             hover:bg-poke-card border border-poke-border/50
             hover:border-poke-border hover:scale-[1.02] hover:shadow-md
             group overflow-hidden
+            ${isDimmed ? 'opacity-25 scale-95' : ''}
+            ${isMatch ? 'ring-2 ring-poke-yellow ring-offset-1 ring-offset-poke-dark scale-105 z-10' : ''}
           `}
         >
           {/* Options button (change status without resetting) */}

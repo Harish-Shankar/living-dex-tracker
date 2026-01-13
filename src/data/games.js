@@ -397,11 +397,119 @@ export const GAMES = [
     name: 'Pokémon Legends: Arceus',
     shortName: 'PLA',
     generation: 8,
-    maxDex: 905,
+    maxDex: 242,
     region: 'Hisui',
     color: '#2E4053',
     year: 2022,
     boxArt: '/boxart/la.webp',
+    customDex: [
+      // Hisui Pokedex - 242 Pokemon (National Dex numbers)
+      722, 723, 724,  // Rowlet line (Hisuian Decidueye)
+      155, 156, 157,  // Cyndaquil line (Hisuian Typhlosion)
+      501, 502, 503,  // Oshawott line (Hisuian Samurott)
+      399, 400,       // Bidoof, Bibarel
+      396, 397, 398,  // Starly line
+      403, 404, 405,  // Shinx line
+      265, 266, 267, 268, 269,  // Wurmple lines
+      77, 78,         // Ponyta, Rapidash
+      133, 134, 135, 136, 196, 197, 470, 471, 700,  // Eevee + all evolutions
+      41, 42, 169,    // Zubat line
+      425, 426,       // Drifloon, Drifblim
+      401, 402,       // Kricketot, Kricketune
+      418, 419,       // Buizel, Floatzel
+      412, 413, 414,  // Burmy, Wormadam, Mothim
+      74, 75, 76,     // Geodude line
+      234, 899,       // Stantler, Wyrdeer
+      446, 143,       // Munchlax, Snorlax
+      46, 47,         // Paras, Parasect
+      172, 25, 26,    // Pichu, Pikachu, Raichu
+      63, 64, 65,     // Abra line
+      390, 391, 392,  // Chimchar line
+      427, 428,       // Buneary, Lopunny
+      420, 421,       // Cherubi, Cherrim
+      54, 55,         // Psyduck, Golduck
+      415, 416,       // Combee, Vespiquen
+      123, 900, 212,  // Scyther, Kleavor, Scizor
+      214,            // Heracross
+      439, 122,       // Mime Jr., Mr. Mime
+      190, 424,       // Aipom, Ambipom
+      129, 130,       // Magikarp, Gyarados
+      422, 423,       // Shellos, Gastrodon
+      211, 904,       // Qwilfish, Overqwil
+      440, 113, 242,  // Happiny, Chansey, Blissey
+      406, 315, 407,  // Budew, Roselia, Roserade
+      455,            // Carnivine
+      548, 549,       // Petilil, Lilligant (Hisuian)
+      114, 465,       // Tangela, Tangrowth
+      339, 340,       // Barboach, Whiscash
+      453, 454,       // Croagunk, Toxicroak
+      280, 281, 282, 475,  // Ralts line + Gallade
+      193, 469,       // Yanma, Yanmega
+      449, 450,       // Hippopotas, Hippowdon
+      417,            // Pachirisu
+      434, 435,       // Stunky, Skuntank
+      216, 217, 901,  // Teddiursa, Ursaring, Ursaluna
+      704, 705, 706,  // Goomy line (Hisuian Sliggoo/Goodra)
+      95, 208,        // Onix, Steelix
+      111, 112, 464,  // Rhyhorn line
+      438, 185,       // Bonsly, Sudowoodo
+      108, 463,       // Lickitung, Lickilicky
+      175, 176, 468,  // Togepi line
+      387, 388, 389,  // Turtwig line
+      137, 233, 474,  // Porygon line
+      92, 93, 94,     // Gastly line
+      442,            // Spiritomb
+      198, 430,       // Murkrow, Honchkrow
+      201,            // Unown
+      363, 364, 365,  // Spheal line
+      223, 224,       // Remoraid, Octillery
+      451, 452,       // Skorupi, Drapion
+      58, 59,         // Growlithe, Arcanine (Hisuian)
+      431, 432,       // Glameow, Purugly
+      66, 67, 68,     // Machop line
+      441,            // Chatot
+      355, 356, 477,  // Duskull line
+      393, 394, 395,  // Piplup line
+      458, 226,       // Mantyke, Mantine
+      550, 902,       // Basculin, Basculegion
+      37, 38,         // Vulpix, Ninetales (Alolan in Hisui)
+      72, 73,         // Tentacool, Tentacruel
+      456, 457,       // Finneon, Lumineon
+      240, 126, 467,  // Magby line
+      81, 82, 462,    // Magnemite line
+      436, 437,       // Bronzor, Bronzong
+      239, 125, 466,  // Elekid line
+      207, 472,       // Gligar, Gliscor
+      443, 444, 445,  // Gible line
+      299, 476,       // Nosepass, Probopass
+      100, 101,       // Voltorb, Electrode (Hisuian)
+      479,            // Rotom
+      433, 358,       // Chingling, Chimecho
+      200, 429,       // Misdreavus, Mismagius
+      173, 35, 36,    // Cleffa line
+      215, 903, 461,  // Sneasel, Sneasler, Weavile
+      361, 362, 478,  // Snorunt, Glalie, Froslass
+      408, 409,       // Cranidos, Rampardos
+      410, 411,       // Shieldon, Bastiodon
+      220, 221, 473,  // Swinub line
+      712, 713,       // Bergmite, Avalugg (Hisuian)
+      459, 460,       // Snover, Abomasnow
+      570, 571,       // Zorua, Zoroark (Hisuian)
+      627, 628,       // Rufflet, Braviary (Hisuian)
+      447, 448,       // Riolu, Lucario
+      480, 481, 482,  // Lake Trio
+      485,            // Heatran
+      486,            // Regigigas
+      488,            // Cresselia
+      641, 642, 645,  // Forces of Nature
+      905,            // Enamorus
+      483, 484,       // Dialga, Palkia
+      487,            // Giratina
+      493,            // Arceus
+      489, 490,       // Phione, Manaphy
+      492,            // Shaymin
+      491,            // Darkrai
+    ]
   },
   // Generation 9
   {

@@ -1,7 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { Search, X } from 'lucide-react';
 import { useSave } from '../contexts/SaveContext';
 import { GAMES, getPokemonNumbersForGame, CATCH_STATUS } from '../data/games';
 import PCBox from '../components/PCBox';
+import { getPokemonName } from '../data/pokemon';
 
 const EXP_SHARE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/exp-share.png';
 const EGG_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/egg.png';
@@ -15,6 +17,7 @@ const STATUS_COLORS = {
 
 export default function TrackerPage() {
   const { currentSave, getCompletionStats, pokemonStatus } = useSave();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const game = useMemo(() => {
     return GAMES.find(g => g.id === currentSave?.gameId);
@@ -24,6 +27,21 @@ export default function TrackerPage() {
     if (!currentSave) return [];
     return getPokemonNumbersForGame(currentSave.gameId);
   }, [currentSave]);
+
+  // Get matching Pokemon dex numbers based on search
+  const matchingPokemon = useMemo(() => {
+    if (!searchQuery.trim()) return new Set();
+    const query = searchQuery.toLowerCase().trim();
+    const matches = new Set();
+    pokemonNumbers.forEach(num => {
+      const name = getPokemonName(num).toLowerCase();
+      const dexStr = String(num);
+      if (name.includes(query) || dexStr.includes(query)) {
+        matches.add(num);
+      }
+    });
+    return matches;
+  }, [searchQuery, pokemonNumbers]);
 
   const stats = getCompletionStats();
 
@@ -63,7 +81,7 @@ export default function TrackerPage() {
               {/* Save Details */}
               <div className="flex items-center gap-4">
                 {/* Box Art */}
-                <div className="w-16 h-22 sm:w-20 sm:h-28 rounded-lg overflow-hidden shadow-lg shrink-0 bg-gradient-to-br from-gray-100 to-gray-200">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden shadow-lg shrink-0 bg-gradient-to-br from-gray-100 to-gray-200">
                   <img 
                     src={game.boxArt} 
                     alt={game.name}
@@ -141,8 +159,35 @@ export default function TrackerPage() {
           <p>Click a slot to set/clear • use <span className="font-medium">⋮</span> to change status anytime</p>
         </div>
 
+        {/* Search Bar */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-poke-text-light" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search Pokemon by name or number..."
+              className="w-full pl-10 pr-10 py-2.5 bg-poke-card border border-poke-border rounded-lg text-poke-text placeholder-poke-text-light focus:outline-none focus:ring-2 focus:ring-poke-yellow/50"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-poke-text-light hover:text-poke-text transition-colors"
+              >
+                <X size={18} />
+              </button>
+            )}
+          </div>
+          {searchQuery && (
+            <p className="text-xs text-poke-text-light mt-2 text-center">
+              Found {matchingPokemon.size} matching Pokemon
+            </p>
+          )}
+        </div>
+
         {/* PC Box */}
-        <PCBox pokemonNumbers={pokemonNumbers} game={game} />
+        <PCBox pokemonNumbers={pokemonNumbers} game={game} searchQuery={searchQuery} matchingPokemon={matchingPokemon} />
 
         {/* Legend */}
         <div className="mt-6 glass rounded-xl p-4">

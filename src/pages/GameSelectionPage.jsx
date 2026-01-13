@@ -93,7 +93,7 @@ export default function GameSelectionPage() {
             </button>
             <div className="flex items-center gap-4">
               {/* Box Art */}
-              <div className="w-20 h-28 rounded-lg overflow-hidden shadow-lg shrink-0 bg-gradient-to-br from-gray-100 to-gray-200">
+              <div className="w-20 h-20 rounded-lg overflow-hidden shadow-lg shrink-0 bg-gradient-to-br from-gray-100 to-gray-200">
                 <img 
                   src={selectedGame.boxArt} 
                   alt={selectedGame.name}

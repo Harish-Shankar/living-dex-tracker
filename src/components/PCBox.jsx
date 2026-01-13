@@ -6,9 +6,10 @@ import { CATCH_STATUS } from '../data/games';
 
 const POKEMON_PER_BOX = 30;
 
-export default function PCBox({ pokemonNumbers, game }) {
+export default function PCBox({ pokemonNumbers, game, searchQuery = '', matchingPokemon = new Set() }) {
   const { getStatus, updatePokemonStatus } = useSave();
   const [currentBox, setCurrentBox] = useState(0);
+  const isSearching = searchQuery.trim().length > 0;
   
   const totalBoxes = Math.ceil(pokemonNumbers.length / POKEMON_PER_BOX);
   
@@ -122,6 +123,8 @@ export default function PCBox({ pokemonNumbers, game }) {
               dexNumber={dexNumber}
               status={getStatus(dexNumber)}
               onStatusChange={handleStatusChange}
+              isSearching={isSearching}
+              isMatch={matchingPokemon.has(dexNumber)}
             />
           ))}
           
